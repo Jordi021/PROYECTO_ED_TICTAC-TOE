@@ -2,6 +2,7 @@ package tictactoe;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -115,26 +116,36 @@ public class Ventana extends javax.swing.JFrame {
         if (modo.equalsIgnoreCase("3X3")) {
             this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
             this.bodyPanel1.setBackground(Color.MAGENTA);
-            crearBotones(9);
+            crearBotones(3);
         } else {
             this.bodyPanel1 = new JPanel(new GridLayout(5, 5, 5, 5));
             this.bodyPanel1.setBackground(Color.darkGray);
-            crearBotones(25);
+            crearBotones(5);
         }
-        getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
 
+        getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
     private void crearBotones(int n) {
+        this.arregloButton = new JButton[n][n];
         for (int i = 0; i < n; i++) {
-            this.bodyPanel1.add(new JButton());
+            for (int j = 0; j < n; j++) {
+                JButton boton = new JButton();
+                boton.setFont(new Font("Century Gothic", Font.BOLD, 14));
+                boton.setBackground(Color.white);
+                this.bodyPanel1.add(this.arregloButton[i][j] = boton);
+                this.arregloButton[i][j].addActionListener(new Texto());
+
+            }
         }
     }
+
     /**
      * @param args the command line arguments
      */
     private JPanel bodyPanel1;
+    private JButton[][] arregloButton;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnEmpezar;
