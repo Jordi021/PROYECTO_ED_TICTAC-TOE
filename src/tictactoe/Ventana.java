@@ -5,7 +5,7 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         this.setResizable(false);
-        this.setSize(700, 600);
+//        this.setSize(700, 600);
         this.setLocationRelativeTo(null);
     }
 
@@ -14,84 +14,72 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         headPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEmpezar = new javax.swing.JButton();
         footPanel = new javax.swing.JPanel();
+        btnRepetir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(700, 600));
+        setResizable(false);
 
         headPanel.setBackground(new java.awt.Color(153, 255, 255));
+        headPanel.setPreferredSize(new java.awt.Dimension(700, 130));
+        headPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout headPanelLayout = new javax.swing.GroupLayout(headPanel);
-        headPanel.setLayout(headPanelLayout);
-        headPanelLayout.setHorizontalGroup(
-            headPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
-        );
-        headPanelLayout.setVerticalGroup(
-            headPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 2, 10)); // NOI18N
+        jLabel1.setText("REALIZADO POR: JORDAN PURUNCAJAS, BIXMAR RODRIGUEZ, JUAN ULCUANGO");
+        headPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 458, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3X3", "5X5" }));
+        headPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, 30));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel2.setText("TIC TAC TOE");
+        headPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 220, -1));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel3.setText("SELECCIONE EL MODO DE JUEGO:");
+        headPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 84, 271, -1));
 
         getContentPane().add(headPanel, java.awt.BorderLayout.PAGE_START);
 
         bodyPanel.setBackground(new java.awt.Color(255, 153, 153));
-        bodyPanel.setLayout(new java.awt.GridLayout(3, 3, 5, 0));
+        bodyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        bodyPanel.add(jButton1);
-
-        jButton2.setText("jButton2");
-        bodyPanel.add(jButton2);
-
-        jButton4.setText("jButton4");
-        bodyPanel.add(jButton4);
-
-        jButton7.setText("jButton7");
-        bodyPanel.add(jButton7);
-
-        jButton6.setText("jButton6");
-        bodyPanel.add(jButton6);
-
-        jButton9.setText("jButton9");
-        bodyPanel.add(jButton9);
-
-        jButton8.setText("jButton8");
-        bodyPanel.add(jButton8);
-
-        jButton5.setText("jButton5");
-        bodyPanel.add(jButton5);
-
-        jButton3.setText("jButton3");
-        bodyPanel.add(jButton3);
+        btnEmpezar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnEmpezar.setText("EMPEZAR");
+        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpezarActionPerformed(evt);
+            }
+        });
+        bodyPanel.add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 220, 110, -1));
 
         getContentPane().add(bodyPanel, java.awt.BorderLayout.CENTER);
 
         footPanel.setBackground(new java.awt.Color(153, 255, 153));
+        footPanel.setPreferredSize(new java.awt.Dimension(700, 100));
+        footPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout footPanelLayout = new javax.swing.GroupLayout(footPanel);
-        footPanel.setLayout(footPanelLayout);
-        footPanelLayout.setHorizontalGroup(
-            footPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
-        );
-        footPanelLayout.setVerticalGroup(
-            footPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        btnRepetir.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnRepetir.setText("REPETIR JUGADA");
+        btnRepetir.setEnabled(false);
+        footPanel.add(btnRepetir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
 
         getContentPane().add(footPanel, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
+        this.btnRepetir.setEnabled(true);
+    }//GEN-LAST:event_btnEmpezarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,16 +88,13 @@ public class Ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JButton btnEmpezar;
+    private javax.swing.JButton btnRepetir;
     private javax.swing.JPanel footPanel;
     private javax.swing.JPanel headPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
