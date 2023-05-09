@@ -13,7 +13,8 @@ public class Ventana extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("/IMG/tac_tic_toe_icon.ico")).getImage());
+        System.out.println(getClass().toString());
+        this.setIconImage(new ImageIcon(getClass().getResource("/IMG/tictactoe.ico")).getImage());
     }
 
     @SuppressWarnings("unchecked")
