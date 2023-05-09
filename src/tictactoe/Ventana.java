@@ -11,7 +11,6 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         this.setResizable(false);
-//        this.setSize(700, 600);
         this.setLocationRelativeTo(null);
     }
 
@@ -26,6 +25,7 @@ public class Ventana extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         btnEmpezar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         footPanel = new javax.swing.JPanel();
         btnRepetir = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
@@ -43,7 +43,7 @@ public class Ventana extends javax.swing.JFrame {
         headPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 420, -1));
 
         comboModo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3X3", "5X5" }));
-        headPanel.add(comboModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 30));
+        headPanel.add(comboModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 40));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel2.setText("TIC TAC TOE");
@@ -65,7 +65,11 @@ public class Ventana extends javax.swing.JFrame {
                 btnEmpezarActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 110, -1));
+        bodyPanel.add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 110, -1));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel4.setText("EL JUEGO CONSISTE EN... ");
+        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 440, 100));
 
         getContentPane().add(bodyPanel, java.awt.BorderLayout.CENTER);
 
@@ -103,24 +107,28 @@ public class Ventana extends javax.swing.JFrame {
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
-        System.out.println(comboModo.getModel());
-        this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
-        getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
-        getContentPane().remove(this.bodyPanel);
-        this.bodyPanel1.setBackground(Color.BLACK);
+        this.getContentPane().remove(this.bodyPanel);
         this.repaint();
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
-        this.bodyPanel1.add(new JButton());
+        String modo = (String) this.comboModo.getSelectedItem();
+        if (modo.equalsIgnoreCase("3X3")) {
+            this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
+            this.bodyPanel1.setBackground(Color.MAGENTA);
+            crearBotones(9);
+        } else {
+            this.bodyPanel1 = new JPanel(new GridLayout(5, 5, 5, 5));
+            this.bodyPanel1.setBackground(Color.darkGray);
+            crearBotones(25);
+        }
+        getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
+
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
+    private void crearBotones(int n) {
+        for (int i = 0; i < n; i++) {
+            this.bodyPanel1.add(new JButton());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -136,5 +144,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
