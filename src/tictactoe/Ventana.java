@@ -3,7 +3,7 @@ package tictactoe;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -13,8 +13,7 @@ public class Ventana extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        System.out.println(getClass().toString());
-        this.setIconImage(new ImageIcon(getClass().getResource("/IMG/tictactoe.ico")).getImage());
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/tictac-toe.png")));
     }
 
     @SuppressWarnings("unchecked")
