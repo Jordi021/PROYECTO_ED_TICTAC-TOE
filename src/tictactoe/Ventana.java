@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Ventana extends javax.swing.JFrame {
@@ -27,8 +28,11 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
-        btnEmpezar = new javax.swing.JButton();
+        btnX = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        button1 = new java.awt.Button();
+        button2 = new java.awt.Button();
+        labelInfo = new javax.swing.JLabel();
         footPanel = new javax.swing.JPanel();
         btnRepetir = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
@@ -61,18 +65,35 @@ public class Ventana extends javax.swing.JFrame {
         bodyPanel.setBackground(new java.awt.Color(255, 153, 153));
         bodyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnEmpezar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnEmpezar.setText("EMPEZAR");
-        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
+        btnX.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnX.setText("EMPEZAR");
+        btnX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpezarActionPerformed(evt);
+                btnXActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 110, -1));
+        bodyPanel.add(btnX, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 110, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel4.setText("EL JUEGO CONSISTE EN... ");
-        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 440, 100));
+        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 440, 100));
+
+        button1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        button1.setLabel("O");
+        bodyPanel.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
+
+        button2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        button2.setLabel("X");
+        bodyPanel.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, -1, -1));
+
+        labelInfo.setForeground(new java.awt.Color(0, 51, 255));
+        labelInfo.setText("Ver más");
+        labelInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelInfoMouseClicked(evt);
+            }
+        });
+        bodyPanel.add(labelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
 
         getContentPane().add(bodyPanel, java.awt.BorderLayout.CENTER);
 
@@ -107,7 +128,7 @@ public class Ventana extends javax.swing.JFrame {
         this.revalidate();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
+    private void btnXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXActionPerformed
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
         this.getContentPane().remove(this.bodyPanel);
@@ -125,7 +146,26 @@ public class Ventana extends javax.swing.JFrame {
 
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
         this.revalidate();
-    }//GEN-LAST:event_btnEmpezarActionPerformed
+    }//GEN-LAST:event_btnXActionPerformed
+
+    private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
+        JOptionPane.showMessageDialog(null, "Tic Tac Toe, también conocido como "
+                + "Tres en Raya o Gato, es un juego para dos "
+                + "jugadores que se juega en una cuadrícula de 3x3 o 5x5.\nEl objetivo "
+                + "del juego es conseguir tres o cuatro símbolos iguales en línea, ya sea "
+                + "horizontal, vertical o diagonalmente, antes que el otro jugador.\n" 
+                +  "El juego comienza con una cuadrícula vacía. El primer jugador "
+                + "coloca su símbolo (generalmente una X) en cualquier casilla de "
+                + "la cuadrícula.\nLuego, el segundo jugador coloca su símbolo "
+                + "(generalmente una O) en una casilla vacía. Los jugadores alternan"
+                + " turnos hasta que uno de ellos\nconsigue tres lsímbolos iguales en "
+                + "línea o hasta que se llena la cuadrícula sin que ninguno de los"
+                + " jugadores consiga ganar.\n" 
+                + "Tic Tac Toe es un juego sencillo pero desafiante que puede "
+                + "ser jugado en cualquier lugar con solo un papel y un lápiz."
+                + "\nTambién es un juego popular para enseñar a los niños "
+                + "habilidades de pensamiento lógico y estratégico.");
+    }//GEN-LAST:event_labelInfoMouseClicked
 
     private void crearBotones(int n) {
         this.arregloButton = new JButton[n][n];
@@ -148,9 +188,11 @@ public class Ventana extends javax.swing.JFrame {
     private JButton[][] arregloButton;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JButton btnEmpezar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRepetir;
+    private javax.swing.JButton btnX;
+    private java.awt.Button button1;
+    private java.awt.Button button2;
     private javax.swing.JComboBox<String> comboModo;
     private javax.swing.JPanel footPanel;
     private javax.swing.JPanel headPanel;
@@ -158,5 +200,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel labelInfo;
     // End of variables declaration//GEN-END:variables
 }
