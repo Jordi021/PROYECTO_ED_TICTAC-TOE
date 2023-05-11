@@ -21,7 +21,6 @@ public class TextChange implements ActionListener {
         String player_1, player_2;
         player_1 = String.valueOf(player1);
         player_2 = String.valueOf(player2);
-
         JButton button = (JButton) e.getSource();
         if (cont % 2 != 0) {
             button.setText(player_1);
