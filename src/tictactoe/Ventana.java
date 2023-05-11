@@ -154,6 +154,7 @@ public class Ventana extends javax.swing.JFrame {
         this.repaint();
         getContentPane().add(this.bodyPanel, BorderLayout.CENTER);
         this.revalidate();
+        this.btnRegresar.setEnabled(false);
         TextChange.cont = 1;
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -199,7 +200,7 @@ public class Ventana extends javax.swing.JFrame {
                        jugador coloca su símbolo (generalmente una X) en cualquier casilla 
                        de la cuadrícula. Luego, el segundo jugador coloca su símbolo 
                        (generalmente una O) en una casilla vacía. Los jugadores alternan
-                       turnos hasta que uno de ellosconsigue tres lsímbolos iguales en 
+                       turnos hasta que uno de ellos consigue tres lsímbolos iguales en 
                        línea o hasta que se llena la cuadrícula sin que ninguno de los
                        jugadores consiga ganar.Tic Tac Toe es un juego sencillo pero 
                        desafiante que puede ser jugado en cualquier lugar con solo un 
@@ -214,7 +215,7 @@ public class Ventana extends javax.swing.JFrame {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
-                boton.setFont(new Font("Century Gothic", Font.BOLD, 14));
+                boton.setFont(new Font("Century Gothic", Font.BOLD, 36));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.arregloButton[i][j] = boton);
                 this.arregloButton[i][j].addActionListener(new TextChange(player1, player2));
