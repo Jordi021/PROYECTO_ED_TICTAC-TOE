@@ -20,8 +20,7 @@ public class Ventana extends javax.swing.JFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(this.radioButtonX);
         buttonGroup.add(this.radioButtonY);
-        
-   }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -158,6 +157,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
+        definirJugador();
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
         this.getContentPane().remove(this.bodyPanel);
@@ -167,16 +167,27 @@ public class Ventana extends javax.swing.JFrame {
             this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
             this.bodyPanel1.setBackground(new Color(161, 201, 241));
             crearBotones(3);
+            prueba(3);
         } else {
             this.bodyPanel1 = new JPanel(new GridLayout(5, 5, 5, 5));
             this.bodyPanel1.setBackground(new Color(239, 176, 201));
             crearBotones(5);
+            prueba(5);
         }
 
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
+    private void definirJugador() {
+        if (this.radioButtonX.isSelected()) {
+            this.player1 = 'X';
+            this.player2 = 'O';
+        } else {
+            this.player1 = 'O';
+            this.player2 = 'X';
+        }
+    }
     private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
         String texto = """
                        Tic Tac Toe, también conocido como Tres en Raya o Gato, es un juego
@@ -194,7 +205,7 @@ public class Ventana extends javax.swing.JFrame {
                        papel y un lápiz.También es un juego popular para enseñar a los 
                        niños habilidades de pensamiento lógico y estratégico.
                        """;
-        JOptionPane.showMessageDialog(null, texto ,"INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, texto, "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_labelInfoMouseClicked
 
     private void crearBotones(int n) {
@@ -210,12 +221,31 @@ public class Ventana extends javax.swing.JFrame {
             }
         }
     }
+
+    private void prueba(int n) {
+        System.out.println("El jugador 1 es: " + this.player1 + "\nEl jugador 2 es: "  + this.player2);
+        char[][] Matriz = new char[n][n];
+        for (int i = 0; i < Matriz.length; i++) {
+            for (int j = 0; j < Matriz[i].length; j++) {
+                System.out.print("[]\t");
+            }
+            System.out.println();
+        }
+        if (n == 3) {
+            System.out.println("------------------");
+        } else {
+            System.out.println("---------------------------------");
+        }
+    }
+    
     
     /**
      * @param args the command line arguments
      */
     private JPanel bodyPanel1;
     private JButton[][] arregloButton;
+    private char player1;
+    private char player2;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnEmpezar;
