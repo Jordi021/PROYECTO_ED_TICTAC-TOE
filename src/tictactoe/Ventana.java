@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,23 +17,30 @@ public class Ventana extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/tictac-toe.png")));
-    }
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(this.radioButtonX);
+        buttonGroup.add(this.radioButtonY);
+        
+   }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         comboModo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
-        btnX = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
+        btnEmpezar = new javax.swing.JButton();
         labelInfo = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        radioButtonY = new javax.swing.JRadioButton();
+        radioButtonX = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         footPanel = new javax.swing.JPanel();
         btnRepetir = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
@@ -41,16 +49,12 @@ public class Ventana extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
-        headPanel.setBackground(new java.awt.Color(153, 255, 255));
+        headPanel.setForeground(new java.awt.Color(204, 204, 204));
         headPanel.setPreferredSize(new java.awt.Dimension(700, 130));
         headPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 2, 10)); // NOI18N
-        jLabel1.setText("REALIZADO POR: JORDAN PURUNCAJAS, BIXMAR RODRIGUEZ, JUAN ULCUANGO");
-        headPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 420, -1));
-
         comboModo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3X3", "5X5" }));
-        headPanel.add(comboModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 40));
+        headPanel.add(comboModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, 40));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel2.setText("TIC TAC TOE");
@@ -58,53 +62,77 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("SELECCIONE EL MODO DE JUEGO:");
-        headPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 271, -1));
+        headPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 271, -1));
 
         getContentPane().add(headPanel, java.awt.BorderLayout.PAGE_START);
 
-        bodyPanel.setBackground(new java.awt.Color(255, 153, 153));
+        bodyPanel.setBackground(new java.awt.Color(175, 165, 250));
         bodyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnX.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnX.setText("EMPEZAR");
-        btnX.addActionListener(new java.awt.event.ActionListener() {
+        btnEmpezar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnEmpezar.setText("EMPEZAR");
+        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXActionPerformed(evt);
+                btnEmpezarActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnX, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 110, -1));
+        bodyPanel.add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 110, -1));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel4.setText("EL JUEGO CONSISTE EN... ");
-        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 440, 100));
-
-        button1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        button1.setLabel("O");
-        bodyPanel.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
-
-        button2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        button2.setLabel("X");
-        bodyPanel.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, -1, -1));
-
+        labelInfo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelInfo.setForeground(new java.awt.Color(0, 51, 255));
-        labelInfo.setText("Ver más");
+        labelInfo.setText("<html><u>VER MÁS</u></html>");
         labelInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelInfoMouseClicked(evt);
             }
         });
-        bodyPanel.add(labelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+        bodyPanel.add(labelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3-enRaya.png"))); // NOI18N
+        bodyPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
+
+        radioButtonY.setBackground(new java.awt.Color(175, 165, 250));
+        radioButtonY.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        radioButtonY.setForeground(new java.awt.Color(0, 0, 0));
+        radioButtonY.setText("O");
+        bodyPanel.add(radioButtonY, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
+
+        radioButtonX.setBackground(new java.awt.Color(175, 165, 250));
+        radioButtonX.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        radioButtonX.setForeground(new java.awt.Color(0, 0, 0));
+        radioButtonX.setSelected(true);
+        radioButtonX.setText("X");
+        bodyPanel.add(radioButtonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("EMPEZAR CON:");
+        bodyPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 110, -1));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("O DIAGONAL ANTES QUE EL OPONENTE.");
+        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 300, 30));
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("EL OBJETIVO DEL JUEGO ES COLOCAR TRES O CUATRO DE  ");
+        bodyPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 430, 30));
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("TUS SÍMBOLOS EN LÍNEA DE MANERA VERTICAL, HORIZONTAL");
+        bodyPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 430, 30));
 
         getContentPane().add(bodyPanel, java.awt.BorderLayout.CENTER);
 
-        footPanel.setBackground(new java.awt.Color(153, 255, 153));
         footPanel.setPreferredSize(new java.awt.Dimension(700, 70));
         footPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnRepetir.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnRepetir.setText("REPETIR JUGADA");
         btnRepetir.setEnabled(false);
-        footPanel.add(btnRepetir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        footPanel.add(btnRepetir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnRegresar.setText("REGRESAR");
@@ -123,12 +151,13 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         getContentPane().remove(this.bodyPanel1);
+        this.btnRepetir.setEnabled(false);
         this.repaint();
         getContentPane().add(this.bodyPanel, BorderLayout.CENTER);
         this.revalidate();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXActionPerformed
+    private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
         this.getContentPane().remove(this.bodyPanel);
@@ -136,35 +165,36 @@ public class Ventana extends javax.swing.JFrame {
         String modo = (String) this.comboModo.getSelectedItem();
         if (modo.equalsIgnoreCase("3X3")) {
             this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
-            this.bodyPanel1.setBackground(Color.MAGENTA);
+            this.bodyPanel1.setBackground(new Color(161, 201, 241));
             crearBotones(3);
         } else {
             this.bodyPanel1 = new JPanel(new GridLayout(5, 5, 5, 5));
-            this.bodyPanel1.setBackground(Color.darkGray);
+            this.bodyPanel1.setBackground(new Color(239, 176, 201));
             crearBotones(5);
         }
 
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
         this.revalidate();
-    }//GEN-LAST:event_btnXActionPerformed
+    }//GEN-LAST:event_btnEmpezarActionPerformed
 
     private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
-        JOptionPane.showMessageDialog(null, "Tic Tac Toe, también conocido como "
-                + "Tres en Raya o Gato, es un juego para dos "
-                + "jugadores que se juega en una cuadrícula de 3x3 o 5x5.\nEl objetivo "
-                + "del juego es conseguir tres o cuatro símbolos iguales en línea, ya sea "
-                + "horizontal, vertical o diagonalmente, antes que el otro jugador.\n" 
-                +  "El juego comienza con una cuadrícula vacía. El primer jugador "
-                + "coloca su símbolo (generalmente una X) en cualquier casilla de "
-                + "la cuadrícula.\nLuego, el segundo jugador coloca su símbolo "
-                + "(generalmente una O) en una casilla vacía. Los jugadores alternan"
-                + " turnos hasta que uno de ellos\nconsigue tres lsímbolos iguales en "
-                + "línea o hasta que se llena la cuadrícula sin que ninguno de los"
-                + " jugadores consiga ganar.\n" 
-                + "Tic Tac Toe es un juego sencillo pero desafiante que puede "
-                + "ser jugado en cualquier lugar con solo un papel y un lápiz."
-                + "\nTambién es un juego popular para enseñar a los niños "
-                + "habilidades de pensamiento lógico y estratégico.");
+        String texto = """
+                       Tic Tac Toe, también conocido como Tres en Raya o Gato, es un juego
+                       para dos jugadores que se juega en una cuadrícula de 3x3 o 5x5. El
+                       objetivo del juego es conseguir tres o cuatro símbolos iguales en
+                       línea, ya sea horizontal, vertical o diagonalmente, antes que el 
+                       otro jugador. El juego comienza con una cuadrícula vacía. El primer 
+                       jugador coloca su símbolo (generalmente una X) en cualquier casilla 
+                       de la cuadrícula. Luego, el segundo jugador coloca su símbolo 
+                       (generalmente una O) en una casilla vacía. Los jugadores alternan
+                       turnos hasta que uno de ellosconsigue tres lsímbolos iguales en 
+                       línea o hasta que se llena la cuadrícula sin que ninguno de los
+                       jugadores consiga ganar.Tic Tac Toe es un juego sencillo pero 
+                       desafiante que puede ser jugado en cualquier lugar con solo un 
+                       papel y un lápiz.También es un juego popular para enseñar a los 
+                       niños habilidades de pensamiento lógico y estratégico.
+                       """;
+        JOptionPane.showMessageDialog(null, texto ,"INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_labelInfoMouseClicked
 
     private void crearBotones(int n) {
@@ -180,7 +210,7 @@ public class Ventana extends javax.swing.JFrame {
             }
         }
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -188,11 +218,9 @@ public class Ventana extends javax.swing.JFrame {
     private JButton[][] arregloButton;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JButton btnEmpezar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRepetir;
-    private javax.swing.JButton btnX;
-    private java.awt.Button button1;
-    private java.awt.Button button2;
     private javax.swing.JComboBox<String> comboModo;
     private javax.swing.JPanel footPanel;
     private javax.swing.JPanel headPanel;
@@ -200,6 +228,11 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel labelInfo;
+    private javax.swing.JRadioButton radioButtonX;
+    private javax.swing.JRadioButton radioButtonY;
     // End of variables declaration//GEN-END:variables
 }
