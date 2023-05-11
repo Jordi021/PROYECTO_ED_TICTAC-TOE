@@ -154,6 +154,7 @@ public class Ventana extends javax.swing.JFrame {
         this.repaint();
         getContentPane().add(this.bodyPanel, BorderLayout.CENTER);
         this.revalidate();
+        TextChange.cont = 1;
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
@@ -216,7 +217,7 @@ public class Ventana extends javax.swing.JFrame {
                 boton.setFont(new Font("Century Gothic", Font.BOLD, 14));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.arregloButton[i][j] = boton);
-                this.arregloButton[i][j].addActionListener(new Texto(player1, player2));
+                this.arregloButton[i][j].addActionListener(new TextChange(player1, player2));
             }
         }
     }
