@@ -216,8 +216,7 @@ public class Ventana extends javax.swing.JFrame {
                 boton.setFont(new Font("Century Gothic", Font.BOLD, 14));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.arregloButton[i][j] = boton);
-                this.arregloButton[i][j].addActionListener(new Texto());
-
+                this.arregloButton[i][j].addActionListener(new Texto(player1, player2));
             }
         }
     }
