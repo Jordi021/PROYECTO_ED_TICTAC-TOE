@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -45,7 +47,6 @@ public class Ventana extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
         headPanel.setForeground(new java.awt.Color(204, 204, 204));
@@ -92,34 +93,28 @@ public class Ventana extends javax.swing.JFrame {
 
         radioButtonY.setBackground(new java.awt.Color(175, 165, 250));
         radioButtonY.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        radioButtonY.setForeground(new java.awt.Color(0, 0, 0));
         radioButtonY.setText("O");
         bodyPanel.add(radioButtonY, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
 
         radioButtonX.setBackground(new java.awt.Color(175, 165, 250));
         radioButtonX.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        radioButtonX.setForeground(new java.awt.Color(0, 0, 0));
         radioButtonX.setSelected(true);
         radioButtonX.setText("X");
         bodyPanel.add(radioButtonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("EMPEZAR CON:");
         bodyPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 110, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("O DIAGONAL ANTES QUE EL OPONENTE.");
         bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 300, 30));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("EL OBJETIVO DEL JUEGO ES COLOCAR TRES O CUATRO DE  ");
         bodyPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 430, 30));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("TUS SÍMBOLOS EN LÍNEA DE MANERA VERTICAL, HORIZONTAL");
         bodyPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 430, 30));
 
@@ -131,6 +126,11 @@ public class Ventana extends javax.swing.JFrame {
         btnRepetir.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnRepetir.setText("REPETIR JUGADA");
         btnRepetir.setEnabled(false);
+        btnRepetir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRepetirActionPerformed(evt);
+            }
+        });
         footPanel.add(btnRepetir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -159,6 +159,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
+
         definirJugador();
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
@@ -176,7 +177,6 @@ public class Ventana extends javax.swing.JFrame {
             crearBotones(5);
             prueba(5);
         }
-
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
@@ -210,11 +210,46 @@ public class Ventana extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, texto, "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_labelInfoMouseClicked
 
+    private void btnRepetirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepetirActionPerformed
+        // TODO add your handling code here:
+        try {
+            System.out.println("datos de la pila" + this.juego.toString());
+            this.juego.RegresarJugada();
+            this.arregloButton[this.juego.getI()][this.juego.getJ()].setText("");
+            this.arregloButton[this.juego.getI()][this.juego.getJ()].setEnabled(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No hay jugadas", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRepetirActionPerformed
+
     private void crearBotones(int n) {
+        this.juego = new Jugadas(n);
         this.arregloButton = new JButton[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
+                boton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int fila = -1;
+                        int columna = -1;
+                        // Busca la fila y columna del botón que generó el evento
+                        for (int i = 0; i < n; i++) {
+                            for (int j = 0; j < n; j++) {
+                                if (arregloButton[i][j] == e.getSource()) {
+                                    fila = i;
+                                    columna = j;
+                                    break;
+                                }
+                            }
+                            if (fila >= 0) {
+                                break;
+                            }
+                        }
+                        juego.Jugada(fila, columna);
+               
+                        System.out.println("Se hizo clic en el botón (" + fila + "," + columna + ")");
+                    }
+                });
                 boton.setFont(new Font("Century Gothic", Font.BOLD, 36));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.arregloButton[i][j] = boton);
@@ -223,11 +258,6 @@ public class Ventana extends javax.swing.JFrame {
         }
     }
 
-    private void prueba(int n) {
-        System.out.println("El jugador 1 es: " + this.player1 + "\nEl jugador 2 es: "  + this.player2);
-    }
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -235,6 +265,9 @@ public class Ventana extends javax.swing.JFrame {
     private JButton[][] arregloButton;
     private char player1;
     private char player2;
+    private Jugadas juego;
+    private int ultima_jugada=0;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnEmpezar;
