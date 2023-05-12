@@ -155,7 +155,7 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(this.bodyPanel, BorderLayout.CENTER);
         this.revalidate();
         this.btnRegresar.setEnabled(false);
-        TextChange.cont = 1;
+        Accion.cont = 1;
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
@@ -169,12 +169,10 @@ public class Ventana extends javax.swing.JFrame {
             this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
             this.bodyPanel1.setBackground(new Color(161, 201, 241));
             crearBotones(3);
-            prueba(3);
         } else {
             this.bodyPanel1 = new JPanel(new GridLayout(5, 5, 5, 5));
             this.bodyPanel1.setBackground(new Color(239, 176, 201));
             crearBotones(5);
-            prueba(5);
         }
 
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
@@ -218,27 +216,11 @@ public class Ventana extends javax.swing.JFrame {
                 boton.setFont(new Font("Century Gothic", Font.BOLD, 36));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.arregloButton[i][j] = boton);
-                this.arregloButton[i][j].addActionListener(new TextChange(player1, player2));
+                this.arregloButton[i][j].addActionListener(new Accion(player1, player2));
             }
         }
     }
-
-    private void prueba(int n) {
-        System.out.println("El jugador 1 es: " + this.player1 + "\nEl jugador 2 es: "  + this.player2);
-        char[][] Matriz = new char[n][n];
-        for (int i = 0; i < Matriz.length; i++) {
-            for (int j = 0; j < Matriz[i].length; j++) {
-                System.out.print("[]\t");
-            }
-            System.out.println();
-        }
-        if (n == 3) {
-            System.out.println("------------------");
-        } else {
-            System.out.println("---------------------------------");
-        }
-    }
-    
+   
     
     /**
      * @param args the command line arguments
