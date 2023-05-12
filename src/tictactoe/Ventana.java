@@ -169,12 +169,10 @@ public class Ventana extends javax.swing.JFrame {
             this.bodyPanel1 = new JPanel(new GridLayout(3, 3, 5, 5));
             this.bodyPanel1.setBackground(new Color(161, 201, 241));
             crearBotones(3);
-            prueba(3);
         } else {
             this.bodyPanel1 = new JPanel(new GridLayout(5, 5, 5, 5));
             this.bodyPanel1.setBackground(new Color(239, 176, 201));
             crearBotones(5);
-            prueba(5);
         }
 
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
@@ -222,23 +220,6 @@ public class Ventana extends javax.swing.JFrame {
             }
         }
     }
-
-    private void prueba(int n) {
-        System.out.println("El jugador 1 es: " + this.player1 + "\nEl jugador 2 es: "  + this.player2);
-        char[][] Matriz = new char[n][n];
-        for (int i = 0; i < Matriz.length; i++) {
-            for (int j = 0; j < Matriz[i].length; j++) {
-                System.out.print("[]\t");
-            }
-            System.out.println();
-        }
-        if (n == 3) {
-            System.out.println("------------------");
-        } else {
-            System.out.println("---------------------------------");
-        }
-    }
-    
     
     /**
      * @param args the command line arguments
