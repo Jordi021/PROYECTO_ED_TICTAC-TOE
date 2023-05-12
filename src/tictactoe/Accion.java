@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-public class TextChange implements ActionListener {
+public class Accion implements ActionListener {
 
     private final char player1;
     private final char player2;
 
     public static int cont = 1;
 
-    public TextChange(char player1, char player2) {
+    public Accion(char player1, char player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
