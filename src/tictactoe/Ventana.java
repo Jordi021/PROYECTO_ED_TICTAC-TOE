@@ -229,7 +229,11 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "NO HAY JUGADAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRepetirActionPerformed
-
+    
+    /** Crea los botones de una matriz de botones.
+     * 
+     * @param n es el tañamo de la matriz (n*n).
+     */
     private void crearBotones(int n) {
         this.matrizButton = new JButton[n][n];
         this.pilaJugadas = new Pila(n * n);
