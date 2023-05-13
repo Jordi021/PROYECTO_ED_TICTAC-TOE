@@ -131,6 +131,11 @@ public class Ventana extends javax.swing.JFrame {
         btnRepetir.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnRepetir.setText("REPETIR JUGADA");
         btnRepetir.setEnabled(false);
+        btnRepetir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRepetirActionPerformed(evt);
+            }
+        });
         footPanel.add(btnRepetir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -155,7 +160,7 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(this.bodyPanel, BorderLayout.CENTER);
         this.revalidate();
         this.btnRegresar.setEnabled(false);
-        TextChange.cont = 1;
+        Accion.cont = 1;
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
@@ -208,26 +213,46 @@ public class Ventana extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, texto, "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_labelInfoMouseClicked
 
+    private void btnRepetirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepetirActionPerformed
+        try {
+            Jugada turno;
+            JButton boton;
+            int posI, posJ;
+            turno = (Jugada) this.pilaJugadas.pop();
+            posI = turno.getI();
+            posJ = turno.getJ();
+            boton = this.matrizButton[posI][posJ];
+            boton.setText("");
+            boton.setEnabled(true);
+            Accion.cont--;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "NO HAY JUGADAS", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRepetirActionPerformed
+
     private void crearBotones(int n) {
-        this.arregloButton = new JButton[n][n];
+        this.matrizButton = new JButton[n][n];
+        this.pilaJugadas = new Pila(n * n);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
                 boton.setFont(new Font("Century Gothic", Font.BOLD, 36));
                 boton.setBackground(Color.white);
-                this.bodyPanel1.add(this.arregloButton[i][j] = boton);
-                this.arregloButton[i][j].addActionListener(new TextChange(player1, player2));
+                this.bodyPanel1.add(this.matrizButton[i][j] = boton);
+                this.matrizButton[i][j].addActionListener(new Accion(this.player1, this.player2, this.matrizButton, this.pilaJugadas));
             }
         }
     }
+
     
     /**
      * @param args the command line arguments
      */
     private JPanel bodyPanel1;
-    private JButton[][] arregloButton;
+    private JButton[][] matrizButton;
     private char player1;
     private char player2;
+    private Pila pilaJugadas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnEmpezar;

@@ -12,14 +12,14 @@ public class Pila {
         this.A = new Object[size];
     }
 
-    public void apilar(Object elemento) {
+    public void push(Object elemento) {
         if (this.numElementos < this.size) {
             this.A[this.numElementos] = elemento;
             this.numElementos++;
         }
     }
 
-    public Object desapilar() {
+    public Object pop() {
         Object elemento = null;
         if (!vacia()) {
             elemento = this.A[this.numElementos - 1];
