@@ -233,7 +233,6 @@ public class Ventana extends javax.swing.JFrame {
     private void crearBotones(int n) {
         this.matrizButton = new JButton[n][n];
         this.pilaJugadas = new Pila(n * n);
-        System.out.println("se creo una pila: " + pilaJugadas.size());
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
