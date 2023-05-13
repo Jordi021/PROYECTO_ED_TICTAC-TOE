@@ -5,5 +5,6 @@ public class Main {
         Ventana v = new Ventana();
         v.setVisible(true);
         System.out.println("Rama Jordan\n");
+        System.out.println("prueba");
     }
 }
