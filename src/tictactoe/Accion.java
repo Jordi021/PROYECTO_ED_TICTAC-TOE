@@ -129,5 +129,47 @@ public class Accion implements ActionListener {
 
         return false;
     }
+    
+    private boolean Win5x5(ActionEvent e) {
+        //Filas
+        for (int i = 0; i < this.matrizButton.length; i++) {
+            for (int j = 0; j <= this.matrizButton.length - 4; j++) {
+                if ((this.matrizButton[i][j] == this.matrizButton[i][j + 1]
+                        && this.matrizButton[i][j] == this.matrizButton[i][j + 2]
+                        && this.matrizButton[i][j] == this.matrizButton[i][j + 3]) && this.matrizButton[i][j].getText().equalsIgnoreCase("")) {
+                    return true;
+                }
+            }
+        }
+        for (int i = 0; i < this.matrizButton.length; i++) {
+            for (int j = 0; j <= this.matrizButton.length - 4; j++) {
+                if ((this.matrizButton[j][i] == this.matrizButton[j + 1][i]
+                        && this.matrizButton[j][i] == this.matrizButton[j + 2][i]
+                        && this.matrizButton[j][i] == this.matrizButton[j + 3][i]) && this.matrizButton[i][j].getText().equalsIgnoreCase("")) {
+                    return true;
+                }
+            }
+        }
+        for (int i = 4 - 1; i < this.matrizButton.length; i++) {
+            for (int j = 0; j <= this.matrizButton.length - 4; j++) {
+                if ((this.matrizButton[i][j] == this.matrizButton[i - 1][j + 1]
+                        && this.matrizButton[i][j] == this.matrizButton[i - 2][j + 2]
+                        && this.matrizButton[i][j] == this.matrizButton[i - 3][j + 3]) && this.matrizButton[i][j].getText().equalsIgnoreCase("")) {
+                    return true;
+                }
+            }
+        }
+        for (int i = 0; i <= this.matrizButton.length - 4; i++) {
+            for (int j = 0; j <= this.matrizButton.length - 4; j++) {
+                if (this.matrizButton[i][j].getText().equalsIgnoreCase("")
+                        && this.matrizButton[i][j] == this.matrizButton[i + 1][j + 1]
+                        && this.matrizButton[i][j] == this.matrizButton[i + 2][j + 2]
+                        && this.matrizButton[i][j] == this.matrizButton[i + 3][j + 3]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }
