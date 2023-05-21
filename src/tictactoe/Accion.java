@@ -22,6 +22,7 @@ public class Accion implements ActionListener {
 //        this.matrizButton = matrizButton;
 //        this.pilaJugadas = pilaJugadas;
 //    }
+    
     public Accion(char player1, char player2, JButton[][] matrizButton, Pila pilaJugadas, JButton empezar, JButton regresar) {
         this.player1 = player1;
         this.player2 = player2;

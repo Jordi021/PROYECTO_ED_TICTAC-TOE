@@ -171,6 +171,7 @@ public class Ventana extends javax.swing.JFrame {
         this.comboModo.setVisible(false);
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
+
         this.getContentPane().remove(this.bodyPanel);
         this.repaint();
         String modo = (String) this.comboModo.getSelectedItem();
@@ -197,6 +198,7 @@ public class Ventana extends javax.swing.JFrame {
             this.player2 = 'X';
         }
     }
+
     private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
         String texto = """
                        Tic Tac Toe, también conocido como Tres en Raya o Gato, es un juego
