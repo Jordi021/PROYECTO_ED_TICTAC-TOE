@@ -34,6 +34,13 @@ public class Accion implements ActionListener {
         turno(e);
         cont++;
         button.setEnabled(false);
+        if(ganador(player_1)) {
+            System.out.println("gano: "  + player_1);
+        }
+        
+        if(ganador(player_2)) {
+            System.out.println("gano: " + player_2);
+        }
     }
 
     private void turno(ActionEvent e) {
@@ -50,7 +57,34 @@ public class Accion implements ActionListener {
                 }
             }
         }
-        turno = new Jugada(fila, columna);   
+        turno = new Jugada(fila, columna);
         this.pilaJugadas.push(turno);
     }
+
+    public boolean ganador(String player) {
+        for (int i = 0; i < matrizButton.length; i++) {
+            if (matrizButton[i][0].getText().equalsIgnoreCase(player)
+                    && matrizButton[i][1].getText().equalsIgnoreCase(player)
+                    && matrizButton[i][2].getText().equalsIgnoreCase(player)) {
+                return true;
+            }
+
+            if (matrizButton[0][i].getText().equalsIgnoreCase(player)
+                    && matrizButton[1][i].getText().equalsIgnoreCase(player)
+                    && matrizButton[2][i].getText().equalsIgnoreCase(player)) {
+                return true;
+            }
+        }
+
+        if (matrizButton[0][0].getText().equalsIgnoreCase(player)
+                && matrizButton[1][1].getText().equalsIgnoreCase(player)
+                && matrizButton[2][2].getText().equalsIgnoreCase(player)) {
+            return true;
+        }
+
+        return matrizButton[0][2].getText().equalsIgnoreCase(player)
+                && matrizButton[1][1].getText().equalsIgnoreCase(player)
+                && matrizButton[2][0].getText().equalsIgnoreCase(player);
+    }
+
 }

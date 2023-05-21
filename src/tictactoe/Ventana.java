@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -29,7 +30,7 @@ public class Ventana extends javax.swing.JFrame {
         headPanel = new javax.swing.JPanel();
         comboModo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelModoJuego = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         btnEmpezar = new javax.swing.JButton();
         labelInfo = new javax.swing.JLabel();
@@ -59,9 +60,9 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2.setText("TIC TAC TOE");
         headPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 220, -1));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel3.setText("SELECCIONE EL MODO DE JUEGO:");
-        headPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 271, -1));
+        labelModoJuego.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        labelModoJuego.setText("SELECCIONE EL MODO DE JUEGO:");
+        headPanel.add(labelModoJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 271, -1));
 
         getContentPane().add(headPanel, java.awt.BorderLayout.PAGE_START);
 
@@ -163,8 +164,12 @@ public class Ventana extends javax.swing.JFrame {
         Accion.cont = 1;
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    public JButton getButton() {return this.btnRegresar;}
+    
+    
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         definirJugador();
+        modificarCabecera();
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
         this.getContentPane().remove(this.bodyPanel);
@@ -184,6 +189,11 @@ public class Ventana extends javax.swing.JFrame {
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
+    private void modificarCabecera() {
+        this.headPanel.remove(this.labelModoJuego);
+        this.headPanel.remove(this.comboModo);
+    }
+    
     private void definirJugador() {
         if (this.radioButtonX.isSelected()) {
             this.player1 = 'X';
@@ -263,12 +273,12 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel headPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel labelInfo;
+    private javax.swing.JLabel labelModoJuego;
     private javax.swing.JRadioButton radioButtonX;
     private javax.swing.JRadioButton radioButtonY;
     // End of variables declaration//GEN-END:variables
