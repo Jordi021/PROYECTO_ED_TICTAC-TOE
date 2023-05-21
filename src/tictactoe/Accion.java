@@ -110,7 +110,7 @@ public class Accion implements ActionListener {
     }
 
     private boolean cincoXcinco() {
-        return true;
+        return false;
     }
 
     private boolean empate(int size) {

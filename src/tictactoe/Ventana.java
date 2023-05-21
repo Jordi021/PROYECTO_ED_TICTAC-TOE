@@ -240,7 +240,7 @@ public class Ventana extends javax.swing.JFrame {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
-                boton.setFont(new Font("Century Gothic", Font.BOLD, 100));
+                boton.setFont(new Font("Century Gothic", Font.BOLD, 60));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.matrizButton[i][j] = boton);
                 this.matrizButton[i][j].addActionListener(new Accion(this.player1, this.player2,
