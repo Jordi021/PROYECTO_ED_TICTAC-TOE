@@ -33,7 +33,7 @@ public class Ventana extends javax.swing.JFrame {
         headPanel = new javax.swing.JPanel();
         comboModo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelModoJuego = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         btnEmpezar = new javax.swing.JButton();
         labelInfo = new javax.swing.JLabel();
@@ -63,9 +63,9 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2.setText("TIC TAC TOE");
         headPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 220, -1));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel3.setText("SELECCIONE EL MODO DE JUEGO:");
-        headPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 271, -1));
+        labelModoJuego.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        labelModoJuego.setText("SELECCIONE EL MODO DE JUEGO:");
+        headPanel.add(labelModoJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 271, -1));
 
         getContentPane().add(headPanel, java.awt.BorderLayout.PAGE_START);
 
@@ -173,6 +173,8 @@ public class Ventana extends javax.swing.JFrame {
         this.revalidate();
         this.btnRegresar.setEnabled(false);
         Accion.cont = 1;
+        this.labelModoJuego.setVisible(true);
+        this.comboModo.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 /**
  * Llama al metodo definirJugador, hanilita los botones "btnRepetir" y "btnRegresar",
@@ -185,8 +187,11 @@ public class Ventana extends javax.swing.JFrame {
  */
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         definirJugador();
+        this.labelModoJuego.setVisible(false);
+        this.comboModo.setVisible(false);
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
+
         this.getContentPane().remove(this.bodyPanel);
         this.repaint();
         String modo = (String) this.comboModo.getSelectedItem();
@@ -208,21 +213,24 @@ public class Ventana extends javax.swing.JFrame {
  * el primer jugador sera 'X' y el segundo 'O', si no el primer jugador sera 'O'
  * y el segundo 'X'.
  */
-    private void definirJugador() {
-        if (this.radioButtonX.isSelected()) {
-            this.player1 = 'X';
-            this.player2 = 'O';
-        } else {
-            this.player1 = 'O';
-            this.player2 = 'X';
-        }
+private void definirJugador() {
+    if (this.radioButtonX.isSelected()) {
+        this.player1 = 'X';
+        this.player2 = 'O';
+    } else {
+        this.player1 = 'O';
+        this.player2 = 'X';
     }
-    /**
-     * Muestra una ventana emergente con el mensaje de la cadena "texto"
-     * el cual tiene informacion como la descripcion del juego, el mensaje se
-     * mostrara cuando el usuario de click en el JLabel
-     * @param evt la accion que activa el metodo siguiente.
-     */
+}
+
+/**
+ * Muestra una ventana emergente con el mensaje de la cadena "texto"
+ * el cual tiene informacion como la descripcion del juego, el mensaje se
+ * mostrara cuando el usuario de click en el JLabel
+ * 
+ * @param evt la accion que activa el metodo siguiente.
+ */
+    
     private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
         String texto = """
                        Tic Tac Toe, también conocido como Tres en Raya o Gato, es un juego
@@ -278,15 +286,16 @@ public class Ventana extends javax.swing.JFrame {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
-                boton.setFont(new Font("Century Gothic", Font.BOLD, 36));
+                boton.setFont(new Font("Century Gothic", Font.BOLD, 60));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.matrizButton[i][j] = boton);
-                this.matrizButton[i][j].addActionListener(new Accion(this.player1, this.player2, this.matrizButton, this.pilaJugadas));
+                this.matrizButton[i][j].addActionListener(new Accion(this.player1, this.player2,
+                        this.matrizButton, this.pilaJugadas, this.btnEmpezar, this.btnRegresar));
             }
         }
     }
 
-    
+
     /**
      * @param args the command line arguments
      */
@@ -305,12 +314,12 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel headPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel labelInfo;
+    private javax.swing.JLabel labelModoJuego;
     private javax.swing.JRadioButton radioButtonX;
     private javax.swing.JRadioButton radioButtonY;
     // End of variables declaration//GEN-END:variables

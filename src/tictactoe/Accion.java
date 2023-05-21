@@ -1,5 +1,4 @@
 package tictactoe;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -10,12 +9,17 @@ import javax.swing.JButton;
  * Implementa metodos de la calse "ActionListener"
  * @author ulcua
  */
+
+import javax.swing.JOptionPane;
+
 public class Accion implements ActionListener {
 
     private final char player1;
     private final char player2;
     private final JButton[][] matrizButton;
     private final Pila pilaJugadas;
+    private final JButton empezar;
+    private final JButton regresar;
 
     public static int cont = 1;
 /**
@@ -25,11 +29,21 @@ public class Accion implements ActionListener {
  * @param matrizButton es un arreglo de botones
  * @param pilaJugadas el objeto en donde se almacena los jugadores
  */
-    public Accion(char player1, char player2, JButton[][] matrizButton, Pila pilaJugadas) {
+
+//    public Accion(char player1, char player2, JButton[][] matrizButton, Pila pilaJugadas) {
+//        this.player1 = player1;
+//        this.player2 = player2;
+//        this.matrizButton = matrizButton;
+//        this.pilaJugadas = pilaJugadas;
+//    }
+    
+    public Accion(char player1, char player2, JButton[][] matrizButton, Pila pilaJugadas, JButton empezar, JButton regresar) {
         this.player1 = player1;
         this.player2 = player2;
         this.matrizButton = matrizButton;
         this.pilaJugadas = pilaJugadas;
+        this.empezar = empezar;
+        this.regresar = regresar;
     }
 /**
  * Sobre escribe el evento de accion para los botones del arreglo,
@@ -53,6 +67,15 @@ public class Accion implements ActionListener {
         turno(e);
         cont++;
         button.setEnabled(false);
+        
+        if (ganador(matrizButton.length)) {
+            System.out.println("gano: " + button.getText());
+            menuOpciones(button.getText());
+        }
+        if (empate(matrizButton.length)) {
+            System.out.println("EMPATE!!");
+            menuOpciones("EMPATE");
+        }
     }
 /**
  * Establece dos variables fila y columna las cuales guardaran los elementos 
@@ -76,7 +99,83 @@ public class Accion implements ActionListener {
                 }
             }
         }
-        turno = new Jugada(fila, columna);   
+        turno = new Jugada(fila, columna);
         this.pilaJugadas.push(turno);
+    }
+
+    private boolean ganador(int size) {
+        if (size == 3) {
+            return tresXtres();
+        } else {
+            return cincoXcinco();
+        }
+    }
+
+    private boolean tresXtres() {
+
+        for (int i = 0; i < matrizButton.length; i++) {
+            if (matrizButton[i][0].getText().equals(matrizButton[i][1].getText())
+                    && matrizButton[i][1].getText().equals(matrizButton[i][2].getText())
+                    && !matrizButton[i][0].getText().isEmpty()) {
+                return true;
+            }
+
+            if (matrizButton[0][i].getText().equals(matrizButton[1][i].getText())
+                    && matrizButton[1][i].getText().equals(matrizButton[2][i].getText())
+                    && !matrizButton[0][i].getText().isEmpty()) {
+                return true;
+            }
+        }
+
+        if (matrizButton[0][0].getText().equals(matrizButton[1][1].getText())
+                && matrizButton[1][1].getText().equals(matrizButton[2][2].getText())
+                && !matrizButton[0][0].getText().isEmpty()) {
+            return true;
+        }
+
+        return matrizButton[0][2].getText().equals(matrizButton[1][1].getText())
+                && matrizButton[1][1].getText().equals(matrizButton[2][0].getText())
+                && !matrizButton[0][2].getText().isEmpty();
+    }
+
+    private boolean cincoXcinco() {
+        return false;
+    }
+
+    private boolean empate(int size) {
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (matrizButton[i][j].getText().isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void menuOpciones(String key) {
+        String[] opciones = {"VOLVER A JUGAR", "VOLVER A INICIO"};
+        String texto;
+        String titulo;
+        if(key.equals("EMPATE")) {
+            titulo = "JUEGO EMPATADO";
+            texto = "ESCOGE UNA OPCIÓN:";
+        } else {
+            titulo = "FELICIDADES!!";
+            texto = "EL JUGADOR \"" + key + "\" GANO LA PARTIDA\nESCOGE UNA OPCIOÓN:";
+        }
+        int seleccion = JOptionPane.showOptionDialog(null, texto,
+                titulo, JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null,
+                opciones, opciones[0]);
+
+        if (seleccion == 0) {
+            this.regresar.doClick();
+            this.empezar.doClick();
+        }
+        if (seleccion == 1) {
+            this.regresar.doClick();
+        }
     }
 }
