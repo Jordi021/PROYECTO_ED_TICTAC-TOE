@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -162,14 +161,14 @@ public class Ventana extends javax.swing.JFrame {
         this.revalidate();
         this.btnRegresar.setEnabled(false);
         Accion.cont = 1;
+        this.labelModoJuego.setVisible(true);
+        this.comboModo.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    public JButton getButton() {return this.btnRegresar;}
-    
-    
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         definirJugador();
-        modificarCabecera();
+        this.labelModoJuego.setVisible(false);
+        this.comboModo.setVisible(false);
         this.btnRepetir.setEnabled(true);
         this.btnRegresar.setEnabled(true);
         this.getContentPane().remove(this.bodyPanel);
@@ -189,11 +188,6 @@ public class Ventana extends javax.swing.JFrame {
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
-    private void modificarCabecera() {
-        this.headPanel.remove(this.labelModoJuego);
-        this.headPanel.remove(this.comboModo);
-    }
-    
     private void definirJugador() {
         if (this.radioButtonX.isSelected()) {
             this.player1 = 'X';
@@ -246,15 +240,15 @@ public class Ventana extends javax.swing.JFrame {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 JButton boton = new JButton();
-                boton.setFont(new Font("Century Gothic", Font.BOLD, 36));
+                boton.setFont(new Font("Century Gothic", Font.BOLD, 100));
                 boton.setBackground(Color.white);
                 this.bodyPanel1.add(this.matrizButton[i][j] = boton);
-                this.matrizButton[i][j].addActionListener(new Accion(this.player1, this.player2, this.matrizButton, this.pilaJugadas));
+                this.matrizButton[i][j].addActionListener(new Accion(this.player1, this.player2,
+                        this.matrizButton, this.pilaJugadas, this.btnEmpezar, this.btnRegresar));
             }
         }
     }
 
-    
     /**
      * @param args the command line arguments
      */
