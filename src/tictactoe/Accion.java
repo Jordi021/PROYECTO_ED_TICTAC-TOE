@@ -28,6 +28,8 @@ public class Accion implements ActionListener {
  * @param player2 es el jugador numero 2 se identifica por un caracter
  * @param matrizButton es un arreglo de botones
  * @param pilaJugadas el objeto en donde se almacena los jugadores
+ * @param empezar
+ * @param regresar
  */
 
 //    public Accion(char player1, char player2, JButton[][] matrizButton, Pila pilaJugadas) {
@@ -36,6 +38,17 @@ public class Accion implements ActionListener {
 //        this.matrizButton = matrizButton;
 //        this.pilaJugadas = pilaJugadas;
 //    }
+    
+    /**
+     * hello world 
+     * @param player1
+     * @param player2
+     * @param matrizButton
+     * @param pilaJugadas
+     * @param empezar
+     * @param regresar
+     */
+     
     
     public Accion(char player1, char player2, JButton[][] matrizButton, Pila pilaJugadas, JButton empezar, JButton regresar) {
         this.player1 = player1;
@@ -138,10 +151,66 @@ public class Accion implements ActionListener {
                 && !matrizButton[0][2].getText().isEmpty();
     }
 
+     /**
+     * El primer for evalua las columnas 0 y 1 comparando si los siguientes tres valores en la fila
+     * son iguales y devuelve verdadero en el momento que cumpla esa condicion
+     * El segundo for evalua las filas 0 y 1 comparando si los siguientes tres valores en la columna
+     * son iguales y devuelve verdadero en el momento que cumpla esa condicion
+     * El tercer for evalua las diagonales descendentes desde que i y j son 0 y 1 comparando si los 
+     * siguientes tres valores en la diagonal son iguales y devuelve verdadero en el momento que cumpla esa condicion
+     * El cuarto for evalua las diagonales ascendentes desde que i igual a 3 y j igual a 0 comparando si los 
+     * siguientes tres valores en la diagonal ascendete son iguales y devuelve verdadero en el momento que cumpla esa condicion
+     * @return boolean
+     */
+
     private boolean cincoXcinco() {
-        //aqui van la logica que verifica que se haya puesto 4 X o 4 O 
+        for (int i = 0; i < this.matrizButton.length; i++) {
+            for (int j = 0; j <= this.matrizButton[i].length - 4; j++) {
+                if (!this.matrizButton[i][j].getText().equalsIgnoreCase("")
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i][j + 1].getText())
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i][j + 2].getText())
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i][j + 3].getText())) {
+                    return true;
+                }
+            }
+        }
+
+        for (int i = 0; i < this.matrizButton.length; i++) {
+            for (int j = 0; j <= this.matrizButton[i].length - 4; j++) {
+                if (!this.matrizButton[j][i].getText().equalsIgnoreCase("")
+                        && this.matrizButton[j][i].getText().equalsIgnoreCase(this.matrizButton[j + 1][i].getText())
+                        && this.matrizButton[j][i].getText().equalsIgnoreCase(this.matrizButton[j + 2][i].getText())
+                        && this.matrizButton[j][i].getText().equalsIgnoreCase(this.matrizButton[j + 3][i].getText())) {
+                    return true;
+                }
+            }
+        }
+
+        for (int i = 0; i <= this.matrizButton.length - 4; i++) {
+            for (int j = 0; j <= this.matrizButton[i].length - 4; j++) {
+                if (!this.matrizButton[i][j].getText().equalsIgnoreCase("")
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i + 1][j + 1].getText())
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i + 2][j + 2].getText())
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i + 3][j + 3].getText())) {
+                    return true;
+                }
+            }
+        }
+
+        
+        for (int i = 3; i < this.matrizButton.length; i++) {
+            for (int j = 0; j <= this.matrizButton[i].length - 4; j++) {
+                if (!this.matrizButton[i][j].getText().equalsIgnoreCase("")
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i - 1][j + 1].getText())
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i - 2][j + 2].getText())
+                        && this.matrizButton[i][j].getText().equalsIgnoreCase(this.matrizButton[i - 3][j + 3].getText())) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
+
 
     private boolean empate(int size) {
 
