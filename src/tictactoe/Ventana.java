@@ -11,7 +11,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Ventana extends javax.swing.JFrame {
-
+/**
+ * Este metodo inicializa los componantes imidiendo que se pueda modificar
+ * la longitud del formulario,coloca la ventana en el centro, añade una 
+ * imagen al formulario, y agrupa los botones
+ */
     public Ventana() {
         initComponents();
         this.setResizable(false);
@@ -152,7 +156,15 @@ public class Ventana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Elimina el componente "bodyPanel1" del formulario,
+ * desactiva el botón "btnRepetir", cambia el contenido del panel,
+ * añade el panel "bodyPanel" al centro del contenedor,
+ * valida los cambios en la estructura de la ventana y 
+ * deshabilita el botón "btnRegresar" 
+ * Establece el valor de 'cont' a 1 de la clase 'Accion'.
+ * @param evt la accion que activa el metodo siguiente.
+ */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         getContentPane().remove(this.bodyPanel1);
         this.btnRepetir.setEnabled(false);
@@ -164,7 +176,15 @@ public class Ventana extends javax.swing.JFrame {
         this.labelModoJuego.setVisible(true);
         this.comboModo.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
-
+/**
+ * Llama al metodo definirJugador, hanilita los botones "btnRepetir" y "btnRegresar",
+ * elimina el panel "bodyPanel" del formulario,
+ * actualiza la ventana, crea un nuevo panel  y lo añade al centro
+ * del formulario.
+ * Además, valida los cambios en la
+ * estructura de la ventana.
+ * @param evt la accion que activa el metodo siguiente.
+ */
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         definirJugador();
         this.labelModoJuego.setVisible(false);
@@ -188,17 +208,29 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(bodyPanel1, java.awt.BorderLayout.CENTER);
         this.revalidate();
     }//GEN-LAST:event_btnEmpezarActionPerformed
-
-    private void definirJugador() {
-        if (this.radioButtonX.isSelected()) {
-            this.player1 = 'X';
-            this.player2 = 'O';
-        } else {
-            this.player1 = 'O';
-            this.player2 = 'X';
-        }
+/**
+ * Define los jugadores, si el objeto radioButtonX esta seleccionado
+ * el primer jugador sera 'X' y el segundo 'O', si no el primer jugador sera 'O'
+ * y el segundo 'X'.
+ */
+private void definirJugador() {
+    if (this.radioButtonX.isSelected()) {
+        this.player1 = 'X';
+        this.player2 = 'O';
+    } else {
+        this.player1 = 'O';
+        this.player2 = 'X';
     }
+}
 
+/**
+ * Muestra una ventana emergente con el mensaje de la cadena "texto"
+ * el cual tiene informacion como la descripcion del juego, el mensaje se
+ * mostrara cuando el usuario de click en el JLabel
+ * 
+ * @param evt la accion que activa el metodo siguiente.
+ */
+    
     private void labelInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelInfoMouseClicked
         String texto = """
                        Tic Tac Toe, también conocido como Tres en Raya o Gato, es un juego
@@ -218,7 +250,15 @@ public class Ventana extends javax.swing.JFrame {
                        """;
         JOptionPane.showMessageDialog(null, texto, "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_labelInfoMouseClicked
-
+/**
+     * Desace la ultima jugada que se realizo al momento de presionar el boton
+     * El elemento "turno" alamcena el contenido de la pila atraves del metodo "po"
+     * "poI" y "posJ" almacenan las posiciones i y j del turno actual o la posicion 
+     * del arreglo, cambia los valores del arreglo en ese punto colocando una cadena
+     * vacia, modifica el elemento cont de Accion disminuyendolo en uno,
+     * muestra un mensaje emergene si no se concreta el metodo anterior
+     * @param evt la accion que activa el metodo siguiente.
+     */
     private void btnRepetirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepetirActionPerformed
         try {
             Jugada turno;
@@ -235,7 +275,11 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "NO HAY JUGADAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRepetirActionPerformed
-
+    
+    /** Crea los botones de una matriz de botones.
+     * 
+     * @param n es el tañamo de la matriz (n*n).
+     */
     private void crearBotones(int n) {
         this.matrizButton = new JButton[n][n];
         this.pilaJugadas = new Pila(n * n);
@@ -250,6 +294,7 @@ public class Ventana extends javax.swing.JFrame {
             }
         }
     }
+
 
     /**
      * @param args the command line arguments
