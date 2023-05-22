@@ -139,6 +139,7 @@ public class Accion implements ActionListener {
     }
 
     private boolean cincoXcinco() {
+        //aqui van la logica que verifica que se haya puesto 4 X o 4 O 
         return false;
     }
 
